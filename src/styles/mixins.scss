@@ -1,0 +1,34 @@
+@mixin for-size($range) {
+  $small-upper-boundary: 576px;
+  $medium-upper-boundary: 768px;
+  $large-upper-boundary: 1200px;
+
+  @if $range == small {
+    @media (max-width: #{$small-upper-boundary - 1}) { @content; }
+  } @else if $range == medium {
+    @media (min-width: $medium-upper-boundary) { @content; }
+  } @else if $range == large {
+    @media (min-width: $large-upper-boundary) { @content; }
+  }
+}
+
+@mixin product-color($color) {
+  .header {
+    border-top-color: $color;
+    border-right-color: $color;
+
+    &:before {
+      border-color: transparent $color $color transparent;
+    }
+  }
+
+  .body {
+    &:before {
+      border-color: $color;
+    }
+
+    .weight {
+      background-color: $color
+    }
+  }
+}
